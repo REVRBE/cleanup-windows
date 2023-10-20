@@ -34,6 +34,9 @@ namespace internals {
 			if (!clean_shared_file_cache()) {
 				std::cerr << "[-] Failed to clean SharedFileCache." << std::endl;
 			}
+			if (!clean_crashdumps()) {
+				std::cerr << "[-] Failed to clean CrashDumps." << std::endl;
+			}
 		}
 
 	private:
@@ -58,6 +61,13 @@ namespace internals {
 			std::wstring cache_path = L"C:\\Windows\\SoftwareDistribution\\Download\\SharedFileCache";
 
 			internals::file_utils::delete_files_in_folder(cache_path);
+			return true;
+		}
+
+		static bool clean_crashdumps() {
+			std::wstring crashdumps_path = L"C:\\Users\\antia\\AppData\\Local\\CrashDumps";
+
+			internals::file_utils::delete_files_in_folder(crashdumps_path);
 			return true;
 		}
 	};
