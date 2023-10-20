@@ -15,7 +15,7 @@ The iconcache & thumbcache are found in this folder path. We restart the explore
 
 The AppCompat Installs folder are found here; it logs installed applications in .txt files; and we clean it by simply deleting the files.
 ```
-C:\\Windows\\appcompat\\Programs\\Install
+C:\Windows\appcompat\Programs\Install
 ```
 
 I've been working on a project which heavily relied on research upon evidence of process execution and other ways to find traces of a program. Therefore I won't release everything right away; and we'll start of with the iconcache and thumbcache.
