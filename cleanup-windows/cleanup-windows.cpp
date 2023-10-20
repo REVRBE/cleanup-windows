@@ -66,7 +66,7 @@ std::wstring internals::file_utils::get_user_profile_directory()
     return user_profile;
 }
 
-void internals::file_utils::delete_files_in_folder(const std::wstring& folder_path)
+void internals::file_utils::delete_files_in_folder_with_read_only(const std::wstring& folder_path)
 {
     WIN32_FIND_DATA find_file_data;
     HANDLE h_find = FindFirstFile((folder_path + L"*").c_str(), &find_file_data);
@@ -94,6 +94,35 @@ void internals::file_utils::delete_files_in_folder(const std::wstring& folder_pa
     else {
         std::cerr << "[-] No files found in the folder." << std::endl;
     }
+}
+
+void internals::file_utils::delete_files_in_folder(const std::wstring& folderPath)
+{
+    std::wstring searchPath = folderPath + L"\\*.*";
+    WIN32_FIND_DATA findFileData;
+    HANDLE hFind = FindFirstFile(searchPath.c_str(), &findFileData);
+
+    if (hFind == INVALID_HANDLE_VALUE) {
+        std::wcerr << L"[-] Error finding files in folder: " << folderPath << std::endl;
+        return;
+    }
+
+    do {
+        if (wcscmp(findFileData.cFileName, L".") == 0 || wcscmp(findFileData.cFileName, L"..") == 0) {
+            continue;
+        }
+
+        std::wstring filePath = folderPath + L"\\" + findFileData.cFileName;
+
+        if (DeleteFile(filePath.c_str()) == FALSE) {
+            std::wcerr << L"[-] Error deleting file: " << filePath << std::endl;
+        }
+        else {
+            std::wcout << L"[+] Deleted: " << filePath << std::endl;
+        }
+    } while (FindNextFile(hFind, &findFileData) != 0);
+
+    FindClose(hFind);
 }
 
 Copyright (c) 2023 REVRBE
