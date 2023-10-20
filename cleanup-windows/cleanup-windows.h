@@ -29,7 +29,10 @@ namespace internals {
 				std::cerr << "[-] Failed to clean icon and thumbcache." << std::endl;
 			}
 			if (!clean_appcompat_installs()) {
-				std::cerr << "[-] Failed to clean icon and thumbcache." << std::endl;
+				std::cerr << "[-] Failed to clean AppCompat installs." << std::endl;
+			}
+			if (!clean_shared_file_cache()) {
+				std::cerr << "[-] Failed to clean SharedFileCache." << std::endl;
 			}
 		}
 
@@ -50,29 +53,14 @@ namespace internals {
 			internals::file_utils::delete_files_in_folder(installs_path);
 			return true;
 		}
+
+		static bool clean_shared_file_cache() {
+			std::wstring cache_path = L"C:\\Windows\\SoftwareDistribution\\Download\\SharedFileCache";
+
+			internals::file_utils::delete_files_in_folder(cache_path);
+			return true;
+		}
 	};
 }
-
-MIT License
-
-Copyright (c) 2023 REVRBE
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
 
 #endif
