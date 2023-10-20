@@ -30,6 +30,6 @@ The CrashDumps are found here; the files contain process names of the crash dump
 C:\Users\%user_profile%\AppData\Local\CrashDumps
 ```
 
-I've been working on a project which heavily relied on research upon evidence of process execution and other ways to find traces of a program. Therefore I won't release everything right away; and we'll start of with the iconcache and thumbcache.
+I've been working on a project which heavily relied on research upon evidence of process execution and other ways to find traces of a program. Therefore I won't release everything right away; and we'll start of with a few simple ones.
 
 I'll be updating this source and release methods to clean registry, prefetch and other Windows components and services.
