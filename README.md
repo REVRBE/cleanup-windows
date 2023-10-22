@@ -4,8 +4,8 @@ Project aimed at cleaning certain stuff on a Windows system.
 
 ## What it cleans so far:
 
-* Iconcache
-* Thumbcache
+* Iconcache (not db)
+* Thumbcache (not db)
 * AppCompat Installs
 * SharedFileCache
 * CrashDumps
